@@ -44,7 +44,7 @@ app.get("/list", function (req, res) {
 
 // Displays all tables
 app.get("/api/tables", function (req, res) {
-    return res.json(JSON.stringify(tableData));
+    return res.json(JSON.stringify([tableData,waiting]));
 });
 
 // Displays a single table, or returns false

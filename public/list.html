@@ -39,7 +39,7 @@
                 <h4>See the reservations so far</h4>
 
                 <button class="btn btn-large btn-primary" id="reserveButton">Make reservations</button>
-                <button class="btn btn-large btn-primary" id="listButton">Back to home page</button>
+                <button class="btn btn-large btn-primary" id="homeButton">Back to home page</button>
             </div>
 
             
@@ -98,17 +98,27 @@ $(document).ready(function () {
     .done((data) => {
         // console.log("Data returned");
         console.log(data);
-        const reserveList = JSON.parse(data);
+        const parsedData = JSON.parse(data);
+        const reserveList = parsedData[0];
         for (let i=0; i < reserveList.length ; i++) {
             // add information on visited restaurants
-            var newRow = $("<tr>");
+            let newRow = $("<tr>");
             newRow.append($("<td>").text(reserveList[i].name));
             newRow.append($("<td>").text(reserveList[i].phone));
             newRow.append($("<td>").text(reserveList[i].email));
             $("#reservationsTable").append(newRow);
 
         }
+        const waitList = parsedData[1];
+        for (let i = 0; i < waitList.length; i++) {
+            // add information on visited restaurants
+            newRow = $("<tr>");
+            newRow.append($("<td>").text(waitList[i].name));
+            newRow.append($("<td>").text(waitList[i].phone));
+            newRow.append($("<td>").text(waitList[i].email));
+            $("#reservationsTable").append(newRow);
 
+        }
     });
 
     // button listeners
