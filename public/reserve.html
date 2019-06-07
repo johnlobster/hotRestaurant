@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Restaurant</title>
+    <link href="https://fonts.googleapis.com/css?family=Knewave&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,6 +26,7 @@
         #title {
             color: red;
             font-weight: bold;
+            font-family: 'Knewave', cursive;
 
         }
     </style>
@@ -89,19 +91,19 @@ $(document).ready(function () {
         const userId = $("#idInput").val().trim();
         
         const fullUrl = "/api/tables";
-        const myData = JSON.stringify({
+        const myData = {
             name: userName,
             email: userEmail,
             phone: userPhone,
             id: userId
-        });
+        };
         console.log(fullUrl);
         console.log(myData);
         $.ajax({ 
             url: fullUrl, 
             type: 'POST', 
             data: myData, 
-            dataType: 'json',
+            dataType: 'json'
         })
         .fail( (error) => {
             $("#result").text("Web problem: reservation couldn't be done, try again");
@@ -112,11 +114,11 @@ $(document).ready(function () {
             console.log("Returned data");
             console.log(returnData);
             if (returnData) {
-                $("#result").text = "Success!! you have a reserved table";
+                $("#result").text("Success!! you have a reserved table");
 
             }
             else {
-                $("#result").text = "Sorry, there wasn't a table but we have put you on waiting list";
+                $("#result").text("Sorry, there wasn't a table but we have put you on waiting list");
             }
         });
     });

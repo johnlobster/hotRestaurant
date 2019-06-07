@@ -24,7 +24,14 @@ const tableData = [
         id: "bobby"
     }
 ];
-const waiting = [];
+const waiting = [
+    {
+        name: "Bobby Jones",
+        email: "@testj.com",
+        phone: "999-999-9999",
+        id: "bobbyJ"
+    }
+];
 
 // Routes 
 app.get("/", function (req, res) {
@@ -55,9 +62,12 @@ app.get("/api/tables/:table", function (req, res) {
 
 // Create New Reservation - takes in JSON input
 app.post("/api/tables", function (req, res) {
-    console.log("Post Success");
+    // console.log("Post Success");
+    // console.log(req.body);
+    // console.log("tableData");
+    // console.log(tableData);
     tableData.push(req.body);
-    res.json(res.body);
+    res.json(true);
 });
 
 // Starts the server to begin listening
