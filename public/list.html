@@ -37,6 +37,50 @@
             <div id="jumbotronBox" class="text-center">
                 <h1 id="title">Hot Restaurant</h1>
                 <h4>See the reservations so far</h4>
+
+                <button class="btn btn-large btn-primary" id="reserveButton">Make reservations</button>
+                <button class="btn btn-large btn-primary" id="listButton">Back to home page</button>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <h3>Reservations</h3>
+        </div> 
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <table class="table  border border-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone number</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservationsTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <h3>Wait list</h3>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <table class="table  border border-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone number</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="waitlistTable">
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -46,14 +90,33 @@
 $(document).ready(function () {
     const url = "localhost:3000";
     // get list of reserved tables
-    $.ajax( {url: url + "/api/tables", type:"get"})
+    $.ajax( {url: "/api/tables", type:"get"})
     .fail((error) => {
-        console.log("ajax post failed");
+        console.log("ajax get failed (/api/tables)");
         console.log(error);
     })
     .done((data) => {
-        console.log("Data returned");
+        // console.log("Data returned");
         console.log(data);
+        const reserveList = JSON.parse(data);
+        for (let i=0; i < reserveList.length ; i++) {
+            // add information on visited restaurants
+            var newRow = $("<tr>");
+            newRow.append($("<td>").text(reserveList[i].name));
+            newRow.append($("<td>").text(reserveList[i].phone));
+            newRow.append($("<td>").text(reserveList[i].email));
+            $("#reservationsTable").append(newRow);
+
+        }
+
+    });
+
+    // button listeners
+    $("#homeButton").on("click", () => {
+        window.location.href = "/";
+    });
+    $("#reserveButton").on("click", () => {
+        window.location.href = "/reserve";
     });
 });
 </script>
