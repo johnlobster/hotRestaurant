@@ -16,6 +16,8 @@
     }
     #title {
         color: red;
+        font-weight: bold;
+
     }
     
     </style>
@@ -38,14 +40,17 @@
 
 </body>
 <script>
+$(document).ready(function () {
+
+    const url="localhost:3000";
     // button listeners
     $("#reserveButton").on("click", () => {
-        windows.location.href="localhost:3000/reserve";
+        windows.location.href= url + "/reserve";
     });
     $("#listButton").on("click", () => {
-            windows.location.href = "localhost:3000/list";
+            windows.location.href = url + "/list";
     });
-
+});
 </script>
 
 </html>

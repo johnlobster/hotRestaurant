@@ -15,12 +15,16 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <style>
+        body {
+            background-color: lightgray;
+        }
         #myJumbotron {
             background: lightblue;
         }
 
         #title {
             color: red;
+            font-weight: bold;
         }
     </style>
 
@@ -39,8 +43,19 @@
 
 </body>
 <script>
-
-
+$(document).ready(function () {
+    const url = "localhost:3000";
+    // get list of reserved tables
+    $.ajax( {url: url + "/api/tables", type:"get"})
+    .fail((error) => {
+        console.log("ajax post failed");
+        console.log(error);
+    })
+    .done((data) => {
+        console.log("Data returned");
+        console.log(data);
+    });
+});
 </script>
 
 </html>
