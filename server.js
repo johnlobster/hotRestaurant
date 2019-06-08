@@ -60,6 +60,18 @@ app.get("/api/tables/:table", function (req, res) {
     return res.json(tableData[i-1]);
 });
 
+// send images from public/images directory
+app.get("/images/:image", (req, res) => {
+    // console.log("/public/images/" + req.params.image);
+    res.sendFile(__dirname + "/public/images/" + req.params.image, {}, (err)  => {
+        if (err) {
+            console.log("Error loading /public/images/" + req.params.image);
+            console.log(err);
+        }
+    } );
+
+});
+
 // Create New Reservation - takes in JSON input
 app.post("/api/tables", function (req, res) {
     // console.log("Post Success");
