@@ -29,33 +29,30 @@
     /* animation */
     @keyframes fadeOut {
     0% {
-        transform: scale(0.9); opacity: 0.9; transform: rotate3d(1, 1, 1, 0deg);}
+        transform: scale(0.9) rotate3d(0, 1, 0.5, 0deg); opacity: 0.9 ;}
     20% {
-        transform: scale(0.8); opacity: 0.85; transform: rotate3d(1, 1, 1, 45deg);}
+        transform: scale(0.8) rotate3d(0, 1, 0.5, 45deg); opacity: 0.85; }
     40% {
-        transform: scale(0.7); opacity: 0.8; transform: rotate3d(1, 1, 1, 90deg);}
+        transform: scale(0.7) rotate3d(0, 1, 0.5, 90deg); opacity: 0.8; }
     60% {
-        transform: scale(0.6); opacity: 0.75; transform: rotate3d(1, 1, 1, 135deg);}
+        transform: scale(0.6) rotate3d(0, 1, 0.5, 135deg); opacity: 0.75; }
     80% {
-        transform: scale(0.5); opacity: 0.7; transform: rotate3d(1, 1, 1, 180deg);}
+        transform: scale(0.2) rotate3d(0, 1, 0.5, 180deg); opacity: 0.7;}
     100% {
-        transform: scale(0.4); opacity: 0.7; transform: rotate3d(1, 1, 1, 225deg);} 
+        transform: scale(0.1) rotate3d(0, 1, 0.5, 225deg); opacity: 0.7; } 
     }
 
-/* 0% { transform: rotate3d(1, 1, 1, 0deg); }
-    50% { transform: rotate3d(1, 1, 1, 180deg); }
-    100% { transform: rotate3d(1, 1, 1, 360deg); } */
     #fireImg {
         height: 80%;
         width: 100%;
     }
 
     .fadeMe {
-        animation-timing-function: ease;
+        animation-timing-function: linear;
         animation-name: fadeOut;
-        animation-duration: 4s;
+        animation-duration: 2s;
         animation-iteration-count: 1;
-        animation-fill-mode: forward; 
+        animation-fill-mode: both;
         }
 
     main {
@@ -104,8 +101,8 @@ $(document).ready(function () {
     $("#reserveButton").on("click", () => {
         $("main").addClass("fadeMe");
         setTimeout( () => {
-            // window.location.href = "/reserve";
-        },3500);
+            window.location.href = "/reserve";
+        },2500);
     });
     $("#listButton").on("click", () => {
             window.location.href = "/list";
